@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeri Karya</title>
+    <style>
+        /* Styling untuk galeri */
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .item {
+            width: 200px;
+            height: 200px;
+            background-color: lightgray;
+            text-align: center;
+            line-height: 200px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .item.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Galeri Karya</h1>
+
+    <!-- Dropdown untuk memilih kategori -->
+    <label for="category">Pilih Kategori: </label>
+    <select id="category">
+        <option value="all">Semua</option>
+        <option value="ilustrasi">Ilustrasi</option>
+        <option value="desain-grafis">Desain Grafis</option>
+        <option value="fotografi">Fotografi</option>
+    </select>
+
+    <div class="gallery">
+        <!-- Karya 1 -->
+        <div class="item ilustrasi">Ilustrasi 1</div>
+        <div class="item desain-grafis">Desain Grafis 1</div>
+        <div class="item fotografi">Fotografi 1</div>
+        <!-- Karya 2 -->
+        <div class="item ilustrasi">Ilustrasi 2</div>
+        <div class="item desain-grafis">Desain Grafis 2</div>
+        <div class="item fotografi">Fotografi 2</div>
+        <!-- Karya 3 -->
+        <div class="item ilustrasi">Ilustrasi 3</div>
+        <div class="item desain-grafis">Desain Grafis 3</div>
+        <div class="item fotografi">Fotografi 3</div>
+    </div>
+
+    <script>
+        // Ambil elemen dropdown dan galeri
+        const categorySelect = document.getElementById('category');
+        const items = document.querySelectorAll('.gallery .item');
+
+        // Fungsi untuk memfilter galeri berdasarkan kategori
+        function filterGallery() {
+            const selectedCategory = categorySelect.value;
+
+            items.forEach(item => {
+                // Hapus kelas 'hidden' untuk menampilkan item
+                item.classList.remove('hidden');
+
+                // Jika kategori yang dipilih bukan 'all', sembunyikan item yang tidak sesuai
+                if (selectedCategory !== 'all' && !item.classList.contains(selectedCategory)) {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+
+        // Tambahkan event listener untuk perubahan pilihan kategori
+        categorySelect.addEventListener('change', filterGallery);
+
+        // Jalankan filter pertama kali untuk menampilkan galeri sesuai kategori default
+        filterGallery();
+    </script>
+</body>
+</html>
